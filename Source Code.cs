@@ -1,6 +1,6 @@
 //Poker-Odds-Calculator
 //By Jack Wu
-//Note: This code is written in C# using Microsoft Visual C# 2010 Express.
+//Note: this code is written in C# using Microsoft Visual C# 2010 Express.
 
 
 using System;
