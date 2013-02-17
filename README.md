@@ -1,3 +1,6 @@
+![my software](http://s4.postimage.org/wy3hw6wtp/Poker_Calculator.jpg) 
+
+
 # Poker Odds Calculator
 
 Poker Odds Calculator is an easy way to calculates the chance that a given pair of cards will achieve one of the rank of hands. It is written for Texas Hold'em by Jack Wu. The goal is to keep it simple and fast because every online poker table only gives a time limit of 1.5 minutes for each turn. Its functionality also includes the calculation of expected values to help the player make better choices. The source code and its algorithm is completely original.
