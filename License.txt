@@ -1,8 +1,8 @@
 Copyright (c) 2013 Jack Wu (http://coffeeapplets.host-ed.me/)
  
 Permission is hereby granted, free of charge, to any person obtaining
-a copy of the Poker_Odds_Calculator and associated documentation files 
-(for the "Poker_Odds_Calculator"), to use the software without restriction, 
+a copy of the Poker-Odds-Calculator and associated documentation files 
+(for the "Poker-Odds-Calculator"), to use the software without restriction, 
 including without limitation to the rights to use, copy, modify or merge 
 for personal or commercial use.
  
