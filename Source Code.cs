@@ -1,7 +1,6 @@
 //Poker-Odds-Calculator
 //By Jack Wu
-//Note: this code is written in C# using Microsoft Visual C# 2010 Express.
-
+//Note: This source code is written in C# using Microsoft Visual C# 2010 Express.
 
 using System;
 using System.Collections.Generic;
@@ -167,7 +166,7 @@ namespace WindowsFormsApplication1
                 intGreatestSameSuit = intSameSuit[1];
                 intLeastSameSuit = intSameSuit[0];
             }
-            //Check for cards on table (doesn't matter which one you use)
+            //Check for cards on table (doesn't matter which card you use)
             for (int c = 0; c < 7; c++)
             {
                 if (strCardSuit[c].Length != 0)
@@ -243,22 +242,12 @@ namespace WindowsFormsApplication1
                 lblFEV.Text = "N/A";
             }
 
-            //Check for straight (ＡＳＳＵＭＩＮＧ　ＺＥＲＯ　ＩＳ　ＴＨＥ　ＤＥＦＡＵＬＴ　ＩＮＴ)
-            //Bubble Sort
-            for (int d = 0; d < intCardValue.Length; d++)
-            {
-                for (int e = 0; e < intCardValue.Length - 1; e++)
-                {
-                    if (intCardValue[e] > intCardValue[e + 1])
-                    {
-                        intTemp = intCardValue[e];
-                        intCardValue[e] = intCardValue[e + 1];
-                        intCardValue[e + 1] = intTemp;
-                    }
-                }
-            }
+            //Checking for straight (ＡＳＳＵＭＩＮＧ　ＺＥＲＯ　ＩＳ　ＴＨＥ　ＤＥＦＡＵＬＴ　ＩＮＴ)
+            //Quick Sort
+            Array.Copy(QuickSort(intCardValue), intCardValue, 7);            
             
-            //Removing identicals
+            
+            //Removing identicals by adding 0 as placeholder
             for (int d = 0; d < intCardValue.Length - 1; d++)
             {
                 if (intCardValue[d] == intCardValue[d + 1])
@@ -267,19 +256,8 @@ namespace WindowsFormsApplication1
                 }
             }
 
-            //Re-Bubble Sort
-            for (int d = 0; d < intCardValue.Length; d++)
-            {
-                for (int e = 0; e < intCardValue.Length - 1; e++)
-                {
-                    if (intCardValue[e] > intCardValue[e + 1])
-                    {
-                        intTemp = intCardValue[e];
-                        intCardValue[e] = intCardValue[e + 1];
-                        intCardValue[e + 1] = intTemp;
-                    }
-                }
-            }
+            //Re-Quick Sort
+            Array.Copy(QuickSort(intCardValue), intCardValue, 7);
 
             //Adding "n"
             for (int f = 6; f >0; f--)
@@ -308,7 +286,7 @@ namespace WindowsFormsApplication1
             //5 frame “n" straight checker
             for (int h = 0; h < intStraight.Length - 5; h++)
             {
-                //If there are less than 5 # due to duplicates, intN[20] will all be 0 and will trigger the actions for the exception after this.
+                //If there are less than 5 numbers due to duplicates, intN[20] will all be 0 and will trigger the actions for the exception after this.
                 if (intStraight[h] != 0 && intStraight[h+1] != 0 && intStraight[h+2] != 0 && intStraight[h+3] != 0 && intStraight[h+4] != 0)
                 {
                     if (intStraight[h] == 99)
@@ -343,26 +321,13 @@ namespace WindowsFormsApplication1
                 }
             }
 
-            //Finding least "n" with Bubble Sort
+            //Finding least "n" with Quick Sort
             if (intN[0] != 0 || intN[1] != 0 || intN[2] != 0 || intN[3] != 0 || intN[4] != 0 || intN[5] != 0 || intN[6] != 0 || intN[7] != 0 || intN[8] != 0 || intN[9] != 0 || intN[10] != 0 || intN[11] != 0 || intN[12] != 0 || intN[13] != 0 || intN[14] != 0 || intN[15] != 0 || intN[16] != 0 || intN[17] != 0 || intN[18] != 0 || intN[19] != 0)
             {
-                for (int d = 0; d < intN.Length; d++)
-                {
-                    for (int e = 0; e < intN.Length - 1; e++)
-                    {
-                        if (intN[e] > intN[e + 1])
-                        {
-                            intTemp = intN[e];
-                            intN[e] = intN[e + 1];
-                            intN[e + 1] = intTemp;
-
-                            //intStraightArray stores the the array # of intStraight that starts the bubble-sorted least=N-5-cards
-                            intTemp = intStraightArray[e];
-                            intStraightArray[e] = intStraightArray[e + 1];
-                            intStraightArray[e + 1] = intTemp;
-                        }
-                    }
-                }
+                //Quick Sort
+                Array.Copy(QuickSort(intN), intN, 20);
+                //intStraightArray stores the the array # of intStraight that starts the quick-sorted least=N-5-cards
+                Array.Copy(QuickSort(intStraightArray), intStraightArray, 25);  
 
                 //Least "n" should be at the front (excluding zeros).
                 for (int x = 0; x < intN.Length; x++)
@@ -472,7 +437,50 @@ namespace WindowsFormsApplication1
         }
 //-----------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------
-        static double OnePair(int intCardsOnTable, int intGreatestSameValue, int intLeastSameValue, int intSameHandValue)
+        int[] QuickSort(int[] intArrayValue)
+        {
+            int intIndex;
+            int intPivot;
+            int[] intArrayCombined;
+            List<int> listLess = new List<int>();
+            List<int> listGreater = new List<int>();
+            List<int> listCombined = new List<int>();
+
+            if (intArrayValue.Length <= 1)
+            {
+                //returns the array since no sorting is necessary.
+                return intArrayValue;
+            }
+
+            intIndex = (intArrayValue.Length - 1) / 2; ;
+            intPivot = intArrayValue[intIndex];
+
+            for (int x = 0; x < intArrayValue.Length; x++)
+            {
+                if (x != intIndex)
+                {
+                    if (intArrayValue[x] <= intPivot)
+                    {
+                        listLess.Add(intArrayValue[x]);
+                    }
+                    else
+                    {
+                        listGreater.Add(intArrayValue[x]);
+                    }
+                }
+            }
+
+            listCombined.AddRange(QuickSort(listLess.ToArray()).Cast<int>().ToList());
+            listCombined.Add(intPivot);
+            listCombined.AddRange(QuickSort(listGreater.ToArray()).Cast<int>().ToList());
+            intArrayCombined = listCombined.ToArray();
+
+            return intArrayCombined;
+        }
+
+//-----------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------
+        double OnePair(int intCardsOnTable, int intGreatestSameValue, int intLeastSameValue, int intSameHandValue)
         {
             double dblProbability = 0;
 
@@ -528,9 +536,9 @@ namespace WindowsFormsApplication1
             return dblProbability;
         }
 
-        //-----------------------------------------------------------------------------------------------------
-        //-----------------------------------------------------------------------------------------------------
-        static double TwoPair(int intCardsOnTable, int intGreatestSameValue, int intLeastSameValue, int intSameHandValue)
+//-----------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------
+        double TwoPair(int intCardsOnTable, int intGreatestSameValue, int intLeastSameValue, int intSameHandValue)
         {
             double dblProbability = 0;
 
@@ -595,9 +603,9 @@ namespace WindowsFormsApplication1
 
             return dblProbability;
         }
-        //-----------------------------------------------------------------------------------------------------
-        //-----------------------------------------------------------------------------------------------------
-        static double ThreeofaKind(int intCardsOnTable, int intGreatestSameValue, int intLeastSameValue, int intSameHandValue)
+//-----------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------
+        double ThreeofaKind(int intCardsOnTable, int intGreatestSameValue, int intLeastSameValue, int intSameHandValue)
         {
             double dblProbability = 0;
 
@@ -661,9 +669,9 @@ namespace WindowsFormsApplication1
 
             return dblProbability;
         }
-        //-----------------------------------------------------------------------------------------------------
-        //-----------------------------------------------------------------------------------------------------
-        static double FourofaKind(int intCardsOnTable, int intGreatestSameValue, int intLeastSameValue, int intSameHandValue)
+//-----------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------
+        double FourofaKind(int intCardsOnTable, int intGreatestSameValue, int intLeastSameValue, int intSameHandValue)
         {
             double dblProbability = 0;
 
@@ -751,9 +759,9 @@ namespace WindowsFormsApplication1
 
             return dblProbability;
         }
-        //-----------------------------------------------------------------------------------------------------
-        //-----------------------------------------------------------------------------------------------------
-        static double FullHouse(int intCardsOnTable, int intGreatestSameValue, int intLeastSameValue, int intSameHandValue)
+//-----------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------
+        double FullHouse(int intCardsOnTable, int intGreatestSameValue, int intLeastSameValue, int intSameHandValue)
         {
             double dblProbability = 0;
 
@@ -841,9 +849,9 @@ namespace WindowsFormsApplication1
 
             return dblProbability;
         }
-        //-----------------------------------------------------------------------------------------------------
-        //-----------------------------------------------------------------------------------------------------
-        static double Flush(int intCardsOnTable, int intGreatestSameSuit, int intLeastSameSuit, int intSameHandSuit)
+//-----------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------
+        double Flush(int intCardsOnTable, int intGreatestSameSuit, int intLeastSameSuit, int intSameHandSuit)
         {
             double dblProbability = 0;
 
@@ -919,9 +927,9 @@ namespace WindowsFormsApplication1
 
             return dblProbability;
         }
-        //-----------------------------------------------------------------------------------------------------
-        //-----------------------------------------------------------------------------------------------------
-        static double Straight(int intCardsOnTable, int[] intStraightNum, int intLeastN)
+//-----------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------
+        double Straight(int intCardsOnTable, int[] intStraightNum, int intLeastN)
         {
             int intPosition = 0;
             double dblSeries = 0;
