@@ -34,7 +34,6 @@ namespace WindowsFormsApplication1
         public void Check()
         {
             int intCom = 0;
-            int intTemp = 0;
             int intDiff = 0;
             int intLeastN = 0;
             int intPosition = 0;
