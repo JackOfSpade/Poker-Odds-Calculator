@@ -21,7 +21,7 @@ Leave the "Turn Card" and "River Card" blank because they haven't been dealt yet
 
 ### 2. Input the Potential Wins and Potential Losses:
 
-Under the label "Expected Value", enter the total pot of $75 ($50 + $25) in the middle of the table, which includes the last bet.
+Under the label "Expected Value", enter the total pot of $75 ($50 + $25), which includes the last bet.
 
 Enter $25 as the amount you need to call.
 
