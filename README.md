@@ -7,7 +7,7 @@ Poker Odds Calculator is an easy way to calculate the chance that a given pair o
 
 ## Usage
 
-Scenario: The flop has just been dealt (with a 10 of diamonds, 2 of clubs and 3 of hearts) and the total pot is $50. Your opponent bets $25. Now it is your turn and you have a 9 of diamonds and 4 of clubs. What will you do?
+**Scenario:** The flop has just been dealt (with a 10 of diamonds, 2 of clubs and 3 of hearts) and the total pot is $50. Your opponent bets $25. Now it is your turn and you have a 9 of diamonds and 4 of clubs. What will you do?
 
 ### 1. Input the Community Cards on the Table:
 
