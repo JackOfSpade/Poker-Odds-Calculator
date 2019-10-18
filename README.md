@@ -11,27 +11,27 @@ Poker Odds Calculator is an easy way to calculate the chance that a given pair o
 
 ### 1. Input the Community Cards on the Table:
 
-Under the label "Flop Cards", enter the 1st card with a suit of "d" for diamonds and "10" as its value.
+Under the label **Flop Cards**, enter the 1st card with a suit of "d" for diamonds and "10" as its value.
 
 Enter the 2nd card with a suit of "c" for clubs and "2" as its value.
 
 Enter the 3rd card with a suit of "h" for hearts and "3" as its value.
 
-Leave the "Turn Card" and "River Card" blank because they haven't been dealt yet.
+Leave the **Turn Card** and **River Card** blank because they haven't been dealt yet.
 
 ### 2. Input the Potential Wins and Potential Losses:
 
-Under the label "Expected Value", enter the total pot of $75 ($50 + $25), which includes the last bet.
+Under the label **Expected Value**, enter the total pot of $75 ($50 + $25), which includes the last bet.
 
 Enter $25 as the amount you need to call.
 
 ### 3. Input Your Cards:
 
-Under the label "Your Cards", enter your 1st card with a suit of "d" for diamonds and "9" as its value.
+Under the label **Your Cards**, enter your 1st card with a suit of "d" for diamonds and "9" as its value.
 
 Enter your 2nd card with a suit of "c" for clubs and "4" as its value.
 
 ### 4. Calculate!
-Press the button "Calculate" and analyse the results!
+Press the button **Calculate** and analyse the results!
 
-In this case, we notice that all of our expected value (EV) for the rank of hands are negative, so the best course of action is to fold.
+In this case, we notice that all of our expected value (**EV**) for the rank of hands are negative, so the best course of action is to fold.
