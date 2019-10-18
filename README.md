@@ -34,4 +34,4 @@ Enter your 2nd card with a suit of "c" for clubs and "4" as its value.
 ### 4. Calculate!
 Press the button "Calculate" and analyse the results!
 
-In this case, we notice that all of our expected value for the rank of hands are negative, so the best course of action is to fold.
+In this case, we notice that all of our expected value (EV) for the rank of hands are negative, so the best course of action is to fold.
