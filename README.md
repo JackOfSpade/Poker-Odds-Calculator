@@ -3,7 +3,7 @@
 
 # Poker Odds Calculator
 
-Poker Odds Calculator is an easy way to calculate the chance that a given pair of cards will achieve one of the rank of hands. It is written for Texas Hold'em. The goal is to keep it simple and fast because every online poker table only gives you a time limit of 90 seconds for each turn. Its functionality also includes the calculation of expected winnings if a certain hand is achieved to help the player make better choices.
+Poker Odds Calculator is an easy way to calculate the chance that a given pair of cards will achieve one of the rank of hands. It is written for Texas Hold'em. The goal is to keep it simple and fast because every online poker table only gives you a time limit of 90 seconds for each turn. Its functionality also includes the calculation of expected value/winnings (EV) if a certain hand is achieved to help the player make better choices.
 
 ## Usage
 
